@@ -24,7 +24,6 @@
 <p align="center" style="margin:0">
 на тему: «Markdown»
 </p>
-
 </br>
 </br>
 </br>
