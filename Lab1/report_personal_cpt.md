@@ -155,46 +155,84 @@
 
    ```mermaid
    classDiagram 
-   class Customer {
-            + name: string
-            + email: string
-            + phone: string
-            + author: string
-            + Customer()
-        }
-        class Order {
-            number: int
-            timestamp: datetime
-            products: List<Products>
-            customer: Customer
-            sum: decimal
-            Order()
-            AddProduct()
-        }
-        class Product {
-            name: string
-            category: string
-            provider: Provider
-            price: decimal
+class Human {
+-string _firstName
++string FirstName
+-string _lastName
++string LastName
+-string _patronumic
++string Patronumic
+}
 
-            AddElement()
-            Product()
-        }
-        class Provider {
-            company: string
-            inn: string
-            email: string
-            phone: string
-            address: string
-            elements: [Product]
-            
-            Provider()
-        }
-        Customer --|> Order
-        Provider --|> Product
-        Product --> Product
-        Product <--> Order
-   ```
+class User {
+
+-int _libraryCardNumber
++int LibraryCardNumber
+-string _phone
++string Phone
+// reservation/reads/read status
+-Dictionary<string, Book> _books
++Dictionary<string, Book> Books
+
++User()
++List<Book> GetBooksByUser()
++bool CreateReviewOnBook(int bookID)
++void ShowUserInfo()
+}
+
+class Author {
+
+-int _authorID
++int AuthorID
+-List<Book> _books
++List<Book> Books
+
++Author()
++List<Book> GetBooksByAuthor()
++void ShowAuthorInfo()
+}
+
+class Genre {
+-int _genreID
++int GenreID
+-string _genreType
++string GenreType
+- List<Book> _books
++ List<Book> Books
+
++Genre()
++List<Book> GetBooksByGenre()
+}
+
+class Review {
+-int _reviewID
++int ReviewID
+-string _reviewText
++string ReviewText
+-DateTime _reviewDateTime
++DateTime ReviewDateTime
+-int _bookID
++int BookID
+-Book _book
++Book Book
+
++Review()
++void GetReviewInfo()
+}
+
+class Book {
+-int _bookID
++int BookId
+}
+
+Book "1..*" *-- "1..*" Genre : Have
+User "1..*" --o "0..1" Review : Left
+User "0..*" --o "0..*" Book : Read
+Book "1..*" *-- "1..*" Author : Written by
+
+User <|-- Human
+Author <|--Human
+```
 
    3. Форма отправки комментария:
    <div class="sending-a-comment">
