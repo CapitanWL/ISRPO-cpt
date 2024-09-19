@@ -154,7 +154,8 @@
    2. Диаграмма классов представлена ниже
 
    ```mermaid
-   classDiagram 
+classDiagram
+
 class Human {
 -string _firstName
 +string FirstName
@@ -225,6 +226,19 @@ class Book {
 +int BookId
 }
 
+class IUserInfo {
+    <<interface>>
+    +void ShowUserInfo()
+}
+
+class IAuthorInfo {
+    <<interface>>
+    +void ShowAuthorInfo()
+}
+
+User ..|> IUserInfo
+Author ..|> IAuthorInfo
+
 Book "1..*" *-- "1..*" Genre : Have
 User "1..*" --o "0..1" Review : Left
 User "0..*" --o "0..*" Book : Read
@@ -232,6 +246,11 @@ Book "1..*" *-- "1..*" Author : Written by
 
 User <|-- Human
 Author <|--Human
+
+note for User "In this context, the user is the reader"
+
+note for Genre "One book can have several genres.\n For example: comedy + drama"
+
 ```
 
    3. Форма отправки комментария:
@@ -457,7 +476,7 @@ Author <|--Human
    
    10. :pencil: :bangbang:
    
-   Так как Markdown поддерживает оповещения, для обозначения важной информации можно воспользоваться следующим:
+   Так как GithubMarkdown поддерживает оповещения, для обозначения важной информации можно воспользоваться следующим:
    
    > [!IMPORTANT]
    > Важная информация!
